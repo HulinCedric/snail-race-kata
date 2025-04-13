@@ -2,7 +2,7 @@ namespace SnailRaceKata.Domain;
 
 public interface RaceResultProvider
 {
-    SnailRaces Races();
+    Task<SnailRaces> Races();
 
     record Snail(int Number, string Name);
 
