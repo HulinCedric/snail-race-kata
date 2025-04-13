@@ -1,5 +1,6 @@
 using FluentAssertions;
 using SnailRaceKata.Domain;
+using static SnailRaceKata.Adapters.Test.BetBuilder;
 
 namespace SnailRaceKata.Adapters.Test;
 
@@ -11,7 +12,7 @@ public abstract class BetRepositoryContractTest
     public void Register_a_bet()
     {
         // Given
-        var bet = new Bet("gambler", new PodiumPronostic(1, 2, 3), 12345);
+        var bet = ABet().WithTimestamp(12345).Build();
 
         // When
         GetRepository().Register(bet);
@@ -27,11 +28,11 @@ public abstract class BetRepositoryContractTest
     public void Retrieve_only_bets_inside_the_time_range()
     {
         // Given
-        var outerLowerRange = new Bet("gambler1", new PodiumPronostic(1, 2, 3), 12345);
-        var equalToLowerRange = new Bet("gambler2", new PodiumPronostic(1, 2, 3), 12346);
-        var inRange = new Bet("gambler3", new PodiumPronostic(1, 2, 3), 12347);
-        var equalToUpperRange = new Bet("gambler4", new PodiumPronostic(1, 2, 3), 12348);
-        var outerUpperRange = new Bet("gambler5", new PodiumPronostic(1, 2, 3), 12349);
+        var outerLowerRange = ABet().WithTimestamp(12345).Build();
+        var equalToLowerRange = ABet().WithTimestamp(12346).Build();
+        var inRange = ABet().WithTimestamp(12347).Build();
+        var equalToUpperRange = ABet().WithTimestamp(12348).Build();
+        var outerUpperRange = ABet().WithTimestamp(12349).Build();
 
         GetRepository().Register(outerLowerRange);
         GetRepository().Register(equalToLowerRange);
