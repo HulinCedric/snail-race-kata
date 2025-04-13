@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnailRaceKata.Domain", "SnailRaceKata.Domain\SnailRaceKata.Domain.csproj", "{A5448571-ECB5-479C-81BF-DC2449A87472}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnailRaceKata.Adapters", "SnailRaceKata.Adapters\SnailRaceKata.Adapters.csproj", "{1BF98974-CB7C-464E-823F-1A82BEA4DDB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnailRaceKata.Adapters.Test", "SnailRaceKata.Adapters.Test\SnailRaceKata.Adapters.Test.csproj", "{FDE457A6-FAD5-4B0D-927D-7DB1DA1706C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5448571-ECB5-479C-81BF-DC2449A87472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5448571-ECB5-479C-81BF-DC2449A87472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5448571-ECB5-479C-81BF-DC2449A87472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5448571-ECB5-479C-81BF-DC2449A87472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BF98974-CB7C-464E-823F-1A82BEA4DDB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BF98974-CB7C-464E-823F-1A82BEA4DDB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BF98974-CB7C-464E-823F-1A82BEA4DDB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BF98974-CB7C-464E-823F-1A82BEA4DDB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDE457A6-FAD5-4B0D-927D-7DB1DA1706C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDE457A6-FAD5-4B0D-927D-7DB1DA1706C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDE457A6-FAD5-4B0D-927D-7DB1DA1706C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDE457A6-FAD5-4B0D-927D-7DB1DA1706C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
