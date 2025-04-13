@@ -3,18 +3,15 @@ using SnailRaceKata.Domain;
 
 namespace SnailRaceKata.Adapters;
 
-public class BetRepositoryMongoDb : BetRepository
+public class BetRepositoryMongoDb(IMongoDatabase database) : BetRepository
 {
-    public BetRepositoryMongoDb(IMongoDatabase database)
-    {
-    }
-
     public void Register(Bet bet)
-    {
-    }
+        => database.GetCollection<Bet>("bet")
+            .InsertOne(bet);
 
     public List<Bet> FindByDateRange(long from, long to)
-    {
-        return null;
-    }
+        => database
+            .GetCollection<Bet>("bet")
+            .Find(c => c.Timestamp >= from && c.Timestamp <= to)
+            .ToList();
 }
