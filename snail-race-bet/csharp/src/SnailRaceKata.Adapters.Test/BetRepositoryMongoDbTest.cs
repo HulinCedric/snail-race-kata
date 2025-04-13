@@ -67,9 +67,16 @@ public class BetRepositoryMongoDbTest : IDisposable
     }
 }
 
-public class BetRepositoryFakeTest
+public class BetRepositoryFakeTest : BetRepositoryContractTest
 {
-    private readonly BetRepository _repository = new BetRepositoryFake();
+    private readonly BetRepositoryFake _repository = new();
+
+    protected override BetRepository GetRepository() => _repository;
+}
+
+public abstract class BetRepositoryContractTest
+{
+    protected abstract BetRepository GetRepository();
 
     [Fact]
     public void Register_a_bet()
@@ -78,10 +85,11 @@ public class BetRepositoryFakeTest
         var bet = new Bet("gambler", new PodiumPronostic(1, 2, 3), 12345);
 
         // When
-        _repository.Register(bet);
+        GetRepository().Register(bet);
 
         // Then
-        _repository.FindByDateRange(12345, 12346)
+        GetRepository()
+            .FindByDateRange(12345, 12346)
             .Should()
             .BeEquivalentTo([bet]);
     }
@@ -96,14 +104,14 @@ public class BetRepositoryFakeTest
         var equalToUpperRange = new Bet("gambler4", new PodiumPronostic(1, 2, 3), 12348);
         var outerUpperRange = new Bet("gambler5", new PodiumPronostic(1, 2, 3), 12349);
 
-        _repository.Register(outerLowerRange);
-        _repository.Register(equalToLowerRange);
-        _repository.Register(inRange);
-        _repository.Register(equalToUpperRange);
-        _repository.Register(outerUpperRange);
+        GetRepository().Register(outerLowerRange);
+        GetRepository().Register(equalToLowerRange);
+        GetRepository().Register(inRange);
+        GetRepository().Register(equalToUpperRange);
+        GetRepository().Register(outerUpperRange);
 
         // When
-        var bets = _repository.FindByDateRange(12346, 12348);
+        var bets = GetRepository().FindByDateRange(12346, 12348);
 
         // Then
         bets.Should().BeEquivalentTo([equalToLowerRange, inRange, equalToUpperRange]);
