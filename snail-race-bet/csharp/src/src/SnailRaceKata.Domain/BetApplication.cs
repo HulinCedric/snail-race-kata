@@ -13,12 +13,12 @@ public class BetApplication
         _raceResultProvider = raceResultProvider;
     }
 
-    public void PlaceBet(string gambler, long timestamp, int first, int second, int third)
-        => _betRepository.Register(new Bet(gambler, new PodiumPronostic(first, second, third), timestamp));
+    public async Task PlaceBet(string gambler, long timestamp, int first, int second, int third)
+        => await _betRepository.Register(new Bet(gambler, new PodiumPronostic(first, second, third), timestamp));
 
     public async Task<List<Winner>> GetWinnersForLastRace()
     {
-        var bets = GetAllBets();
+        var bets = await GetAllBets();
         var lastRace = await GetLastRace();
         if (lastRace is null) return NoWinners;
 
@@ -34,7 +34,7 @@ public class BetApplication
         return races.LastRace();
     }
 
-    private List<Bet> GetAllBets() => _betRepository.FindByDateRange(0, long.MaxValue);
+    private async Task<List<Bet>> GetAllBets() => await _betRepository.FindByDateRange(0, long.MaxValue);
 
     private static IEnumerable<Bet> FindExactMatchBets(List<Bet> bets, RaceResultProvider.SnailRace race)
         => bets
