@@ -1,9 +1,9 @@
 using MongoDB.Driver;
 using SnailRaceKata.Domain;
 
-namespace SnailRaceKata.Adapters;
+namespace SnailRaceKata.Adapters.BetRepository;
 
-public class BetRepositoryMongoDb(IMongoDatabase database) : BetRepository
+public class BetRepositoryMongoDb(IMongoDatabase database) : Domain.BetRepository
 {
     public void Register(Bet bet)
         => database.GetCollection<Bet>("bet")

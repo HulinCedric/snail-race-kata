@@ -1,8 +1,9 @@
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using SnailRaceKata.Adapters.BetRepository;
 using SnailRaceKata.Domain;
 
-namespace SnailRaceKata.Adapters.Test;
+namespace SnailRaceKata.Adapters.Test.BetRepository;
 
 public class BetRepositoryMongoDbTest : BetRepositoryContractTest, IDisposable
 {
@@ -27,5 +28,5 @@ public class BetRepositoryMongoDbTest : BetRepositoryContractTest, IDisposable
 
     public void Dispose() => _mongoClient.Dispose();
 
-    protected override BetRepository GetRepository() => _repository;
+    protected override Domain.BetRepository GetRepository() => _repository;
 }
