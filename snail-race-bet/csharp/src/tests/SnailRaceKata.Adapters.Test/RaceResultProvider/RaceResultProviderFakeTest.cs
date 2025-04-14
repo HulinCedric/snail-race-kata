@@ -1,4 +1,6 @@
-namespace SnailRaceKata.Adapters.Test.RaceResultProvider;
+using SnailRaceKata.Adapters.Fake;
+
+namespace SnailRaceKata.Test.Adapters.RaceResultProvider;
 
 public class RaceResultProviderFakeTest : RaceResultProviderContractTest
 {

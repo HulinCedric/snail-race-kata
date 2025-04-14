@@ -1,6 +1,6 @@
 using FluentAssertions;
 
-namespace SnailRaceKata.Adapters.Test.RaceResultProvider;
+namespace SnailRaceKata.Test.Adapters.RaceResultProvider;
 
 public abstract class RaceResultProviderContractTest
 {

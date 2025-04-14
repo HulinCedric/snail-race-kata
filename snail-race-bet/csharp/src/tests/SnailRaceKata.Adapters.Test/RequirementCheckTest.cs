@@ -4,7 +4,7 @@ using FluentAssertions;
 using MongoDB.Driver;
 using Xunit.Abstractions;
 
-namespace SnailRaceKata.Adapters.Test;
+namespace SnailRaceKata.Test.Adapters;
 
 public class RequirementCheckTest(ITestOutputHelper testOutputHelper)
 {

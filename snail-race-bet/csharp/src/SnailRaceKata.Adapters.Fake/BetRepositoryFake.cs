@@ -1,6 +1,6 @@
 using SnailRaceKata.Domain;
 
-namespace SnailRaceKata.Adapters.BetRepository;
+namespace SnailRaceKata.Adapters.Fake;
 
 public class BetRepositoryFake : Domain.BetRepository
 {

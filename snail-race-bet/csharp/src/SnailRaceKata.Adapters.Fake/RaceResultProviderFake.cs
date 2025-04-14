@@ -1,4 +1,4 @@
-namespace SnailRaceKata.Adapters.Test.RaceResultProvider;
+namespace SnailRaceKata.Adapters.Fake;
 
 public class RaceResultProviderFake : Domain.RaceResultProvider
 {
