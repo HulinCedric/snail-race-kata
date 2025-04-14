@@ -18,6 +18,7 @@
         <PackageReference Include="FluentAssertions" Version="[7.2.0]" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
         <PackageReference Include="Testcontainers.MongoDb" Version="4.3.0" />
+        <PackageReference Include="WireMock.Net" Version="1.7.4" />
         <PackageReference Include="xunit" Version="2.9.3" />
         <PackageReference Include="xunit.runner.visualstudio" Version="3.0.2">
           <PrivateAssets>all</PrivateAssets>
@@ -33,6 +34,17 @@
       <ProjectReference Include="..\..\SnailRaceKata.Adapters.Fake\SnailRaceKata.Adapters.Fake.csproj" />
       <ProjectReference Include="..\..\src\SnailRaceKata.Adapters\SnailRaceKata.Adapters.csproj" />
       <ProjectReference Include="..\SnailRaceKata.Test.Common\SnailRaceKata.Test.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="bin\Debug\net9.0\__admin\mappings\Proxy Mapping for _GET_results.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="RaceResultProvider\Proxy Mapping for _GET_results.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="bin\Debug\net9.0\" />
     </ItemGroup>
 
 </Project>

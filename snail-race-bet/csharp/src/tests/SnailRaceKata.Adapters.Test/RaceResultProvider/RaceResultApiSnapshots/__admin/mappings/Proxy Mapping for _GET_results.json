@@ -1,0 +1,406 @@
+{
+  "Guid": "3db66e36-cc31-4276-bf9b-11ce2b025c1d",
+  "UpdatedAt": "2025-04-14T17:51:32.167054Z",
+  "Title": "Proxy Mapping for GET /results",
+  "Description": "Proxy Mapping for GET /results",
+  "Priority": -2000000,
+  "Request": {
+    "Path": {
+      "Matchers": [
+        {
+          "Name": "WildcardMatcher",
+          "Pattern": "/results",
+          "IgnoreCase": false
+        }
+      ]
+    },
+    "Methods": [
+      "GET"
+    ],
+    "HttpVersion": "1.1"
+  },
+  "Response": {
+    "StatusCode": 200,
+    "BodyAsJson": {
+      "races": [
+        {
+          "raceId": 838056,
+          "timestamp": 1744652903667,
+          "snails": [
+            {
+              "number": 16,
+              "name": "Desert Orchid",
+              "duration": 362.835
+            },
+            {
+              "number": 1,
+              "name": "Gordon",
+              "duration": 383.351
+            },
+            {
+              "number": 18,
+              "name": "Makybe Diva",
+              "duration": 583.84
+            },
+            {
+              "number": 2,
+              "name": "Man O'War",
+              "duration": 494.576
+            },
+            {
+              "number": 9,
+              "name": "Northern Dancer",
+              "duration": 471.848
+            },
+            {
+              "number": 10,
+              "name": "Red Rum",
+              "duration": 352.765
+            },
+            {
+              "number": 11,
+              "name": "Ruffian",
+              "duration": 372.022
+            },
+            {
+              "number": 19,
+              "name": "Winx",
+              "duration": 540.733
+            }
+          ]
+        },
+        {
+          "raceId": 546616,
+          "timestamp": 1744652603548,
+          "snails": [
+            {
+              "number": 14,
+              "name": "Affirmed",
+              "duration": 436.724
+            },
+            {
+              "number": 7,
+              "name": "Frankel",
+              "duration": 318.458
+            },
+            {
+              "number": 18,
+              "name": "Makybe Diva",
+              "duration": 535.415
+            },
+            {
+              "number": 2,
+              "name": "Man O'War",
+              "duration": 531.117
+            },
+            {
+              "number": 9,
+              "name": "Northern Dancer",
+              "duration": 573.667
+            },
+            {
+              "number": 8,
+              "name": "Phar Lap",
+              "duration": 543.936
+            },
+            {
+              "number": 10,
+              "name": "Red Rum",
+              "duration": 367.206
+            },
+            {
+              "number": 11,
+              "name": "Ruffian",
+              "duration": 303.526
+            }
+          ]
+        },
+        {
+          "raceId": 947007,
+          "timestamp": 1744652303438,
+          "snails": [
+            {
+              "number": 15,
+              "name": "Cigar",
+              "duration": 400.087
+            },
+            {
+              "number": 7,
+              "name": "Frankel",
+              "duration": 471.057
+            },
+            {
+              "number": 18,
+              "name": "Makybe Diva",
+              "duration": 408.281
+            },
+            {
+              "number": 2,
+              "name": "Man O'War",
+              "duration": 580.007
+            },
+            {
+              "number": 8,
+              "name": "Phar Lap",
+              "duration": 509.894
+            },
+            {
+              "number": 11,
+              "name": "Ruffian",
+              "duration": 345.585
+            },
+            {
+              "number": 3,
+              "name": "Seabiscuit",
+              "duration": 571.26
+            },
+            {
+              "number": 5,
+              "name": "Zenyatta",
+              "duration": 308.209
+            }
+          ]
+        },
+        {
+          "raceId": 246910,
+          "timestamp": 1744652003352,
+          "snails": [
+            {
+              "number": 14,
+              "name": "Affirmed",
+              "duration": 553.294
+            },
+            {
+              "number": 4,
+              "name": "American Pharoah",
+              "duration": 324.654
+            },
+            {
+              "number": 6,
+              "name": "Black Caviar",
+              "duration": 537.482
+            },
+            {
+              "number": 7,
+              "name": "Frankel",
+              "duration": 332.167
+            },
+            {
+              "number": 20,
+              "name": "Justify",
+              "duration": 417.991
+            },
+            {
+              "number": 2,
+              "name": "Man O'War",
+              "duration": 494.65
+            },
+            {
+              "number": 13,
+              "name": "Seattle Slew",
+              "duration": 470.617
+            },
+            {
+              "number": 19,
+              "name": "Winx",
+              "duration": 459.232
+            }
+          ]
+        },
+        {
+          "raceId": 402905,
+          "timestamp": 1744651703353,
+          "snails": [
+            {
+              "number": 4,
+              "name": "American Pharoah",
+              "duration": 512.515
+            },
+            {
+              "number": 16,
+              "name": "Desert Orchid",
+              "duration": 351.546
+            },
+            {
+              "number": 20,
+              "name": "Justify",
+              "duration": 405.492
+            },
+            {
+              "number": 17,
+              "name": "Kincsem",
+              "duration": 474.494
+            },
+            {
+              "number": 2,
+              "name": "Man O'War",
+              "duration": 589.645
+            },
+            {
+              "number": 10,
+              "name": "Red Rum",
+              "duration": 357.083
+            },
+            {
+              "number": 3,
+              "name": "Seabiscuit",
+              "duration": 398.416
+            },
+            {
+              "number": 13,
+              "name": "Seattle Slew",
+              "duration": 407.495
+            }
+          ]
+        },
+        {
+          "raceId": 951296,
+          "timestamp": 1744651403353,
+          "snails": [
+            {
+              "number": 6,
+              "name": "Black Caviar",
+              "duration": 525.035
+            },
+            {
+              "number": 15,
+              "name": "Cigar",
+              "duration": 366.766
+            },
+            {
+              "number": 7,
+              "name": "Frankel",
+              "duration": 434.563
+            },
+            {
+              "number": 10,
+              "name": "Red Rum",
+              "duration": 440.856
+            },
+            {
+              "number": 11,
+              "name": "Ruffian",
+              "duration": 453.236
+            },
+            {
+              "number": 13,
+              "name": "Seattle Slew",
+              "duration": 476.411
+            },
+            {
+              "number": 19,
+              "name": "Winx",
+              "duration": 317.632
+            },
+            {
+              "number": 5,
+              "name": "Zenyatta",
+              "duration": 530.025
+            }
+          ]
+        },
+        {
+          "raceId": 456033,
+          "timestamp": 1744651103353,
+          "snails": [
+            {
+              "number": 14,
+              "name": "Affirmed",
+              "duration": 444.26
+            },
+            {
+              "number": 6,
+              "name": "Black Caviar",
+              "duration": 580.6
+            },
+            {
+              "number": 15,
+              "name": "Cigar",
+              "duration": 484.713
+            },
+            {
+              "number": 16,
+              "name": "Desert Orchid",
+              "duration": 311.964
+            },
+            {
+              "number": 17,
+              "name": "Kincsem",
+              "duration": 514.742
+            },
+            {
+              "number": 8,
+              "name": "Phar Lap",
+              "duration": 590.46
+            },
+            {
+              "number": 11,
+              "name": "Ruffian",
+              "duration": 534.377
+            },
+            {
+              "number": 3,
+              "name": "Seabiscuit",
+              "duration": 509.722
+            }
+          ]
+        },
+        {
+          "raceId": 139287,
+          "timestamp": 1744650803353,
+          "snails": [
+            {
+              "number": 15,
+              "name": "Cigar",
+              "duration": 448.113
+            },
+            {
+              "number": 16,
+              "name": "Desert Orchid",
+              "duration": 436.805
+            },
+            {
+              "number": 1,
+              "name": "Gordon",
+              "duration": 595.674
+            },
+            {
+              "number": 20,
+              "name": "Justify",
+              "duration": 494.896
+            },
+            {
+              "number": 17,
+              "name": "Kincsem",
+              "duration": 528.931
+            },
+            {
+              "number": 9,
+              "name": "Northern Dancer",
+              "duration": 596.032
+            },
+            {
+              "number": 11,
+              "name": "Ruffian",
+              "duration": 415.865
+            },
+            {
+              "number": 5,
+              "name": "Zenyatta",
+              "duration": 464.836
+            }
+          ]
+        }
+      ]
+    },
+    "Headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3733",
+      "X-Powered-By": "Express",
+      "ETag": "W/\"e95-XwanQUr5uc3G4slov7a0O3mJIj0\"",
+      "Date": "Mon, 14 Apr 2025 17:51:32 GMT",
+      "Connection": "keep-alive",
+      "Keep-Alive": "timeout=5"
+    }
+  }
+}
