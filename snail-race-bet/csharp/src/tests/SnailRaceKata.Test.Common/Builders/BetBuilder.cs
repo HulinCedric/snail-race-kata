@@ -1,6 +1,6 @@
 using SnailRaceKata.Domain;
 
-namespace SnailRaceKata.Adapters.Test.Builders;
+namespace SnailRaceKata.Test.Common.Builders;
 
 public class BetBuilder
 {

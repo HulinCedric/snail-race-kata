@@ -1,7 +1,7 @@
 using FluentAssertions;
-using static SnailRaceKata.Adapters.Test.Builders.BetBuilder;
+using static SnailRaceKata.Test.Common.Builders.BetBuilder;
 
-namespace SnailRaceKata.Adapters.Test.BetRepository;
+namespace SnailRaceKata.Test.Adapters.BetRepository;
 
 public abstract class BetRepositoryContractTest
 {

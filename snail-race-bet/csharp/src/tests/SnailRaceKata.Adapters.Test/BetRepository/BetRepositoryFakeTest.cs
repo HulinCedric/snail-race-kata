@@ -1,6 +1,6 @@
-using SnailRaceKata.Adapters.BetRepository;
+using SnailRaceKata.Adapters.Fake;
 
-namespace SnailRaceKata.Adapters.Test.BetRepository;
+namespace SnailRaceKata.Test.Adapters.BetRepository;
 
 public class BetRepositoryFakeTest : BetRepositoryContractTest
 {

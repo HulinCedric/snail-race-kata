@@ -3,7 +3,7 @@ using MongoDB.Driver;
 using SnailRaceKata.Adapters.BetRepository;
 using SnailRaceKata.Domain;
 
-namespace SnailRaceKata.Adapters.Test.BetRepository;
+namespace SnailRaceKata.Test.Adapters.BetRepository;
 
 public class BetRepositoryMongoDbTest : BetRepositoryContractTest, IDisposable
 {
