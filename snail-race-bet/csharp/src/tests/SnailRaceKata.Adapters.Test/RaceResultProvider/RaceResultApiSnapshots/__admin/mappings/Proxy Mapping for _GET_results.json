@@ -1,6 +1,6 @@
 {
-  "Guid": "3db66e36-cc31-4276-bf9b-11ce2b025c1d",
-  "UpdatedAt": "2025-04-14T17:51:32.167054Z",
+  "Guid": "98b5162b-fd14-4f42-88d8-1d2bc83171e8",
+  "UpdatedAt": "2025-04-14T18:09:44.363781Z",
   "Title": "Proxy Mapping for GET /results",
   "Description": "Proxy Mapping for GET /results",
   "Priority": -2000000,
@@ -23,6 +23,190 @@
     "StatusCode": 200,
     "BodyAsJson": {
       "races": [
+        {
+          "raceId": 641290,
+          "timestamp": 1744654103968,
+          "snails": [
+            {
+              "number": 4,
+              "name": "American Pharoah",
+              "duration": 495.97
+            },
+            {
+              "number": 6,
+              "name": "Black Caviar",
+              "duration": 543.418
+            },
+            {
+              "number": 7,
+              "name": "Frankel",
+              "duration": 535.807
+            },
+            {
+              "number": 1,
+              "name": "Gordon",
+              "duration": 466.769
+            },
+            {
+              "number": 2,
+              "name": "Man O'War",
+              "duration": 319.482
+            },
+            {
+              "number": 8,
+              "name": "Phar Lap",
+              "duration": 480.502
+            },
+            {
+              "number": 3,
+              "name": "Seabiscuit",
+              "duration": 304.472
+            },
+            {
+              "number": 5,
+              "name": "Zenyatta",
+              "duration": 392.564
+            }
+          ]
+        },
+        {
+          "raceId": 826950,
+          "timestamp": 1744653803852,
+          "snails": [
+            {
+              "number": 4,
+              "name": "American Pharoah",
+              "duration": 409.193
+            },
+            {
+              "number": 6,
+              "name": "Black Caviar",
+              "duration": 352.369
+            },
+            {
+              "number": 7,
+              "name": "Frankel",
+              "duration": 317.391
+            },
+            {
+              "number": 1,
+              "name": "Gordon",
+              "duration": 590.618
+            },
+            {
+              "number": 2,
+              "name": "Man O'War",
+              "duration": 313.622
+            },
+            {
+              "number": 8,
+              "name": "Phar Lap",
+              "duration": 302.357
+            },
+            {
+              "number": 3,
+              "name": "Seabiscuit",
+              "duration": 435.12
+            },
+            {
+              "number": 5,
+              "name": "Zenyatta",
+              "duration": 585.801
+            }
+          ]
+        },
+        {
+          "raceId": 104729,
+          "timestamp": 1744653503779,
+          "snails": [
+            {
+              "number": 4,
+              "name": "American Pharoah",
+              "duration": 385.642
+            },
+            {
+              "number": 6,
+              "name": "Black Caviar",
+              "duration": 515.05
+            },
+            {
+              "number": 7,
+              "name": "Frankel",
+              "duration": 349.772
+            },
+            {
+              "number": 1,
+              "name": "Gordon",
+              "duration": 454.385
+            },
+            {
+              "number": 2,
+              "name": "Man O'War",
+              "duration": 460.42
+            },
+            {
+              "number": 8,
+              "name": "Phar Lap",
+              "duration": 580.393
+            },
+            {
+              "number": 3,
+              "name": "Seabiscuit",
+              "duration": 475.038
+            },
+            {
+              "number": 5,
+              "name": "Zenyatta",
+              "duration": 385.193
+            }
+          ]
+        },
+        {
+          "raceId": 980781,
+          "timestamp": 1744653203717,
+          "snails": [
+            {
+              "number": 16,
+              "name": "Desert Orchid",
+              "duration": 446.479
+            },
+            {
+              "number": 1,
+              "name": "Gordon",
+              "duration": 479.205
+            },
+            {
+              "number": 18,
+              "name": "Makybe Diva",
+              "duration": 336.014
+            },
+            {
+              "number": 2,
+              "name": "Man O'War",
+              "duration": 373.38
+            },
+            {
+              "number": 9,
+              "name": "Northern Dancer",
+              "duration": 483.141
+            },
+            {
+              "number": 10,
+              "name": "Red Rum",
+              "duration": 351.15
+            },
+            {
+              "number": 3,
+              "name": "Seabiscuit",
+              "duration": 304.935
+            },
+            {
+              "number": 5,
+              "name": "Zenyatta",
+              "duration": 592.162
+            }
+          ]
+        },
         {
           "raceId": 838056,
           "timestamp": 1744652903667,
@@ -395,10 +579,10 @@
     },
     "Headers": {
       "Content-Type": "application/json; charset=utf-8",
-      "Content-Length": "3733",
+      "Content-Length": "5601",
       "X-Powered-By": "Express",
-      "ETag": "W/\"e95-XwanQUr5uc3G4slov7a0O3mJIj0\"",
-      "Date": "Mon, 14 Apr 2025 17:51:32 GMT",
+      "ETag": "W/\"15e1-c1XfhrRji3fk/kU2oEHj6TZxYcs\"",
+      "Date": "Mon, 14 Apr 2025 18:09:44 GMT",
       "Connection": "keep-alive",
       "Keep-Alive": "timeout=5"
     }

@@ -37,15 +37,4 @@
       <ProjectReference Include="..\SnailRaceKata.Test.Common\SnailRaceKata.Test.Common.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="bin\Debug\net9.0\__admin\mappings\Proxy Mapping for _GET_results.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <None Remove="RaceResultProvider\Proxy Mapping for _GET_results.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="bin\Debug\net9.0\" />
-    </ItemGroup>
-
 </Project>
