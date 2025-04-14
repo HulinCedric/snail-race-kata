@@ -6,6 +6,14 @@ namespace SnailRaceKata.Test.Domain;
 
 public class BetApplicationTest
 {
+    private static readonly RaceResultProvider.SnailRace NineEightSevenPodium = new(
+        RaceId: 33,
+        Timestamp: 1,
+        new RaceResultProvider.Podium(
+            First: new RaceResultProvider.Snail(Number: 9, Name: "Turbo"),
+            Second: new RaceResultProvider.Snail(Number: 8, Name: "Flash"),
+            Third: new RaceResultProvider.Snail(Number: 7, Name: "Speedy")));
+
     private readonly BetApplication _betApplication;
     private readonly RaceResultProviderFake _raceResultProvider = new();
 
@@ -13,45 +21,67 @@ public class BetApplicationTest
 
     [Fact]
     public async Task No_winners_when_no_bet_is_placed()
-        => (await _betApplication.GetWinnersForLastRace())
-            .Should()
-            .BeEmpty();
+    {
+        _raceResultProvider.AlreadyContains(NineEightSevenPodium);
+
+        var winners = await _betApplication.GetWinnersForLastRace();
+
+        winners.Should().BeEmpty();
+    }
 
     [Fact]
-    public void No_winner_when_bet_is_placed_less_than_3_seconds()
-        =>
-            // Place a bet through betApplication
-            // Configure race result provider simulator to have the corresponding podium but with a timestamp less than 3 seconds
-            // Verify there is no winner
-            Assert.Fail("Write tests and implement it");
+    public async Task No_winner_when_bet_is_placed_less_than_3_seconds()
+    {
+        _betApplication.PlaceBet(gambler: "me", timestamp: 1, first: 9, second: 8, third: 7);
 
-    [Fact]
-    public void No_winner_when_the_bet_is_older_than_the_previous_race()
-        =>
-            // Place a bet through betApplication
-            // Configure a race that is older than the bet
-            // Configure another race that is newer than the previous race and has a podium that match the pronostic
-            // Verify there is no winner
-            Assert.Fail("Write tests and implement it");
+        _raceResultProvider.AlreadyContains(
+            new RaceResultProvider.SnailRace(
+                RaceId: 33,
+                Timestamp: 3,
+                new RaceResultProvider.Podium(
+                    First: new RaceResultProvider.Snail(Number: 9, Name: "Turbo"),
+                    Second: new RaceResultProvider.Snail(Number: 8, Name: "Flash"),
+                    Third: new RaceResultProvider.Snail(Number: 7, Name: "Speedy"))));
+
+        var winners = await _betApplication.GetWinnersForLastRace();
+
+        winners.Should().BeEmpty();
+    }
 
     public class WinOnlyWhenPronosticExactMatchsPodium
     {
-        private readonly BetApplication _betApplication = new BetApplicationTest()._betApplication;
+        private readonly BetApplication _betApplication;
+        private readonly RaceResultProviderFake _raceResultProvider;
+
+        public WinOnlyWhenPronosticExactMatchsPodium()
+        {
+            var betApplicationTest = new BetApplicationTest();
+            _betApplication = betApplicationTest._betApplication;
+            _raceResultProvider = betApplicationTest._raceResultProvider;
+        }
 
         [Fact]
-        public void Exact_match()
-            =>
-                // Place a bet through betApplication
-                // Configure race result provider simulator to have the corresponding podium
-                // Verify winners
-                Assert.Fail("Write the test and implement it");
+        public async Task Exact_match()
+        {
+            _betApplication.PlaceBet("me", 1, 9, 8, 7);
+
+            _raceResultProvider.AlreadyContains(NineEightSevenPodium);
+
+            var winners = await _betApplication.GetWinnersForLastRace();
+
+            winners.Should().BeEquivalentTo([new Winner("me")]);
+        }
 
         [Fact]
-        public void Third_place_differs()
-            =>
-                // Place a bet through betApplication
-                // Configure race result provider simulator to have another podium
-                // Verify there is no winner
-                Assert.Fail("Write the test and implement it");
+        public async Task Third_place_differs()
+        {
+            _betApplication.PlaceBet("me", 1, 9, 8, 2);
+
+            _raceResultProvider.AlreadyContains(NineEightSevenPodium);
+
+            var winners = await _betApplication.GetWinnersForLastRace();
+
+            winners.Should().BeEmpty();
+        }
     }
 }
