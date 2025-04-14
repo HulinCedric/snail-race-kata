@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\SnailRaceKata.Domain\SnailRaceKata.Domain.csproj" />
+      <ProjectReference Include="..\SnailRaceKata.Domain\SnailRaceKata.Domain.csproj" />
     </ItemGroup>
 
 </Project>

@@ -69,8 +69,7 @@ public class BetApplicationTest
 
         winners.Should().BeEmpty();
     }
-
-
+    
     [Fact]
     public async Task No_winner_when_the_bet_is_older_than_the_previous_race()
     {

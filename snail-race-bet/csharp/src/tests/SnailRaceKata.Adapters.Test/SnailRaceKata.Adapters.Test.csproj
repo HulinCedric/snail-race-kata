@@ -32,7 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\SnailRaceKata.Adapters.Fake\SnailRaceKata.Adapters.Fake.csproj" />
+      <ProjectReference Include="..\..\src\SnailRaceKata.Adapters.Fake\SnailRaceKata.Adapters.Fake.csproj" />
       <ProjectReference Include="..\..\src\SnailRaceKata.Adapters\SnailRaceKata.Adapters.csproj" />
       <ProjectReference Include="..\SnailRaceKata.Test.Common\SnailRaceKata.Test.Common.csproj" />
     </ItemGroup>

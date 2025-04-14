@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnailRaceKata.Test.Common",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{FAADE94C-A5DE-4741-A7F9-B1D380B3E1A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnailRaceKata.Adapters.Fake", "SnailRaceKata.Adapters.Fake\SnailRaceKata.Adapters.Fake.csproj", "{6E553095-B9CC-46B8-B477-D982755D93E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnailRaceKata.Adapters.Fake", "src\SnailRaceKata.Adapters.Fake\SnailRaceKata.Adapters.Fake.csproj", "{6E553095-B9CC-46B8-B477-D982755D93E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnailRaceKata.Domain.Test", "tests\SnailRaceKata.Domain.Test\SnailRaceKata.Domain.Test.csproj", "{0A949290-13FD-4414-B2C4-07872F695A77}"
 EndProject
