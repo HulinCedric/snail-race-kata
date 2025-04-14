@@ -1,12 +1,11 @@
 using FluentAssertions;
-using SnailRaceKata.Domain;
-using static SnailRaceKata.Adapters.Test.BetBuilder;
+using static SnailRaceKata.Adapters.Test.Builders.BetBuilder;
 
-namespace SnailRaceKata.Adapters.Test;
+namespace SnailRaceKata.Adapters.Test.BetRepository;
 
 public abstract class BetRepositoryContractTest
 {
-    protected abstract BetRepository GetRepository();
+    protected abstract Domain.BetRepository GetRepository();
 
     [Fact]
     public void Register_a_bet()

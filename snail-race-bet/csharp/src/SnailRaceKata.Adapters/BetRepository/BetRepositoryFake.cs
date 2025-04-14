@@ -1,8 +1,8 @@
 using SnailRaceKata.Domain;
 
-namespace SnailRaceKata.Adapters;
+namespace SnailRaceKata.Adapters.BetRepository;
 
-public class BetRepositoryFake : BetRepository
+public class BetRepositoryFake : Domain.BetRepository
 {
     private readonly List<Bet> _bets = [];
 

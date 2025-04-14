@@ -1,6 +1,6 @@
 using SnailRaceKata.Adapters.RaceResultProvider;
 
-namespace SnailRaceKata.Adapters.Test;
+namespace SnailRaceKata.Adapters.Test.RaceResultProvider;
 
 public class RaceResultProviderHttpTest : RaceResultProviderContractTest, IDisposable
 {
