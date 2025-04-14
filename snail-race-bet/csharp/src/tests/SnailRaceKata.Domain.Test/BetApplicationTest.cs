@@ -30,7 +30,31 @@ public class BetApplicationTest
     }
 
     [Fact]
-    public async Task No_winner_when_bet_is_placed_less_than_3_seconds()
+    public async Task Winners_when_there_is_an_exact_match()
+    {
+        _betApplication.PlaceBet("me", 1, 9, 8, 7);
+
+        _raceResultProvider.ThatContains(NineEightSevenPodium);
+
+        var winners = await _betApplication.GetWinnersForLastRace();
+
+        winners.Should().BeEquivalentTo([new Winner("me")]);
+    }
+
+    [Fact]
+    public async Task No_winners_when_there_is_no_exact_match()
+    {
+        _betApplication.PlaceBet("me", 1, 9, 8, 2);
+
+        _raceResultProvider.ThatContains(NineEightSevenPodium);
+
+        var winners = await _betApplication.GetWinnersForLastRace();
+
+        winners.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task No_winners_when_bet_is_placed_less_than_3_seconds()
     {
         _betApplication.PlaceBet(gambler: "me", timestamp: 1, first: 9, second: 8, third: 7);
 
@@ -46,42 +70,5 @@ public class BetApplicationTest
         var winners = await _betApplication.GetWinnersForLastRace();
 
         winners.Should().BeEmpty();
-    }
-
-    public class WinOnlyWhenPronosticExactMatchsPodium
-    {
-        private readonly BetApplication _betApplication;
-        private readonly RaceResultProviderFake _raceResultProvider;
-
-        public WinOnlyWhenPronosticExactMatchsPodium()
-        {
-            var betApplicationTest = new BetApplicationTest();
-            _betApplication = betApplicationTest._betApplication;
-            _raceResultProvider = betApplicationTest._raceResultProvider;
-        }
-
-        [Fact]
-        public async Task Exact_match()
-        {
-            _betApplication.PlaceBet("me", 1, 9, 8, 7);
-
-            _raceResultProvider.ThatContains(NineEightSevenPodium);
-
-            var winners = await _betApplication.GetWinnersForLastRace();
-
-            winners.Should().BeEquivalentTo([new Winner("me")]);
-        }
-
-        [Fact]
-        public async Task Third_place_differs()
-        {
-            _betApplication.PlaceBet("me", 1, 9, 8, 2);
-
-            _raceResultProvider.ThatContains(NineEightSevenPodium);
-
-            var winners = await _betApplication.GetWinnersForLastRace();
-
-            winners.Should().BeEmpty();
-        }
     }
 }
