@@ -8,8 +8,8 @@ namespace SnailRaceKata.Test.Adapters.BetRepository;
 public class BetRepositoryMongoDbTest(MongoDbServer mongoDbServer)
     : BetRepositoryContractTest, IAsyncLifetime, IClassFixture<MongoDbServer>
 {
-    private MongoClient _mongoClient;
-    private BetRepositoryMongoDb _repository;
+    private MongoClient _mongoClient = null!;
+    private BetRepositoryMongoDb _repository = null!;
 
     public async Task InitializeAsync()
     {

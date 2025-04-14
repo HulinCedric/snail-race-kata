@@ -8,23 +8,22 @@ public abstract class BetRepositoryContractTest
     protected abstract Domain.BetRepository GetRepository();
 
     [Fact]
-    public void Register_a_bet()
+    public async Task Register_a_bet()
     {
         // Given
         var bet = ABet().WithTimestamp(12345).Build();
 
         // When
-        GetRepository().Register(bet);
+        await GetRepository().Register(bet);
 
         // Then
-        GetRepository()
-            .FindByDateRange(12345, 12346)
+        (await GetRepository().FindByDateRange(12345, 12346))
             .Should()
             .BeEquivalentTo([bet]);
     }
 
     [Fact]
-    public void Retrieve_only_bets_inside_the_time_range()
+    public async Task Retrieve_only_bets_inside_the_time_range()
     {
         // Given
         var outerLowerRange = ABet().WithTimestamp(12345).Build();
@@ -33,14 +32,14 @@ public abstract class BetRepositoryContractTest
         var equalToUpperRange = ABet().WithTimestamp(12348).Build();
         var outerUpperRange = ABet().WithTimestamp(12349).Build();
 
-        GetRepository().Register(outerLowerRange);
-        GetRepository().Register(equalToLowerRange);
-        GetRepository().Register(inRange);
-        GetRepository().Register(equalToUpperRange);
-        GetRepository().Register(outerUpperRange);
+        await GetRepository().Register(outerLowerRange);
+        await GetRepository().Register(equalToLowerRange);
+        await GetRepository().Register(inRange);
+        await GetRepository().Register(equalToUpperRange);
+        await GetRepository().Register(outerUpperRange);
 
         // When
-        var bets = GetRepository().FindByDateRange(12346, 12348);
+        var bets = await GetRepository().FindByDateRange(12346, 12348);
 
         // Then
         bets.Should().BeEquivalentTo([equalToLowerRange, inRange, equalToUpperRange]);
