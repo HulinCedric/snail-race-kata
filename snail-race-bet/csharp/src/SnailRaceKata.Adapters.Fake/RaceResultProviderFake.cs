@@ -1,17 +1,13 @@
+using SnailRaceKata.Domain;
+
 namespace SnailRaceKata.Adapters.Fake;
 
-public class RaceResultProviderFake : Domain.RaceResultProvider
+public class RaceResultProviderFake : RaceResultProvider
 {
-    public Task<Domain.RaceResultProvider.SnailRaces> Races()
-        => Task.FromResult(
-            new Domain.RaceResultProvider.SnailRaces(
-            [
-                new Domain.RaceResultProvider.SnailRace(
-                    RaceId: 530572,
-                    Timestamp: 1744614752426L,
-                    new Domain.RaceResultProvider.Podium(
-                        First: new Domain.RaceResultProvider.Snail(2, "Man O'War"),
-                        Second: new Domain.RaceResultProvider.Snail(7, "Frankel"),
-                        Third: new Domain.RaceResultProvider.Snail(3, "Seabiscuit")))
-            ]));
+    private readonly List<RaceResultProvider.SnailRace> _snailRaces = [];
+
+    public Task<RaceResultProvider.SnailRaces> Races()
+        => Task.FromResult(new RaceResultProvider.SnailRaces(_snailRaces));
+
+    public void AlreadyContains(RaceResultProvider.SnailRace snailRace) => _snailRaces.Add(snailRace);
 }
