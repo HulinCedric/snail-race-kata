@@ -22,7 +22,7 @@ public class BetApplicationTest
     [Fact]
     public async Task No_winners_when_no_bet_is_placed()
     {
-        _raceResultProvider.AlreadyContains(NineEightSevenPodium);
+        _raceResultProvider.ThatContains(NineEightSevenPodium);
 
         var winners = await _betApplication.GetWinnersForLastRace();
 
@@ -34,7 +34,7 @@ public class BetApplicationTest
     {
         _betApplication.PlaceBet(gambler: "me", timestamp: 1, first: 9, second: 8, third: 7);
 
-        _raceResultProvider.AlreadyContains(
+        _raceResultProvider.ThatContains(
             new RaceResultProvider.SnailRace(
                 RaceId: 33,
                 Timestamp: 3,
@@ -65,7 +65,7 @@ public class BetApplicationTest
         {
             _betApplication.PlaceBet("me", 1, 9, 8, 7);
 
-            _raceResultProvider.AlreadyContains(NineEightSevenPodium);
+            _raceResultProvider.ThatContains(NineEightSevenPodium);
 
             var winners = await _betApplication.GetWinnersForLastRace();
 
@@ -77,7 +77,7 @@ public class BetApplicationTest
         {
             _betApplication.PlaceBet("me", 1, 9, 8, 2);
 
-            _raceResultProvider.AlreadyContains(NineEightSevenPodium);
+            _raceResultProvider.ThatContains(NineEightSevenPodium);
 
             var winners = await _betApplication.GetWinnersForLastRace();
 
