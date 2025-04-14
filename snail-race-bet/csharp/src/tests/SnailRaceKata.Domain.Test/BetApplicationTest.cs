@@ -71,4 +71,26 @@ public class BetApplicationTest
 
         winners.Should().BeEmpty();
     }
+
+
+    [Fact]
+    public async Task No_winner_when_the_bet_is_older_than_the_previous_race()
+    {
+        _betApplication.PlaceBet(gambler: "me", timestamp: 11, first: 9, second: 8, third: 7);
+
+        _raceResultProvider.ThatContains(NineEightSevenPodium);
+
+        _raceResultProvider.ThatContains(
+            new RaceResultProvider.SnailRace(
+                RaceId: 34,
+                Timestamp: 11,
+                new RaceResultProvider.Podium(
+                    First: new RaceResultProvider.Snail(Number: 7, Name: "Speedy"),
+                    Second: new RaceResultProvider.Snail(Number: 8, Name: "Flash"),
+                    Third: new RaceResultProvider.Snail(Number: 9, Name: "Turbo"))));
+
+        var winners = await _betApplication.GetWinnersForLastRace();
+
+        winners.Should().BeEmpty();
+    }
 }
