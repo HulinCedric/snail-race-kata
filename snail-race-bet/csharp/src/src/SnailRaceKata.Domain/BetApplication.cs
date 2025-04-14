@@ -2,7 +2,7 @@ namespace SnailRaceKata.Domain;
 
 public class BetApplication
 {
-    private BetApplication(BetRepository betRepository, RaceResultProvider raceResultProvider)
+    public BetApplication(BetRepository betRepository, RaceResultProvider raceResultProvider)
     {
     }
 
@@ -10,5 +10,5 @@ public class BetApplication
     {
     }
 
-    private List<Winner> GetWinnersForLastRace() => null;
+    public List<Winner> GetWinnersForLastRace() => null;
 }
