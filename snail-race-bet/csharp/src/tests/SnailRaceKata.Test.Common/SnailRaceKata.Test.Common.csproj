@@ -10,4 +10,8 @@
       <ProjectReference Include="..\..\src\SnailRaceKata.Domain\SnailRaceKata.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Bogus" Version="35.6.3" />
+    </ItemGroup>
+
 </Project>

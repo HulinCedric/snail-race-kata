@@ -1,19 +1,12 @@
 using FluentAssertions;
 using SnailRaceKata.Adapters.Fake;
 using SnailRaceKata.Domain;
+using static SnailRaceKata.Test.Common.Builders.SnailRaceResultBuilder;
 
 namespace SnailRaceKata.Test.Domain;
 
 public class BetApplicationTest
 {
-    private static readonly RaceResultProvider.SnailRace NineEightSevenPodium = new(
-        RaceId: 33,
-        Timestamp: 1,
-        new RaceResultProvider.Podium(
-            First: new RaceResultProvider.Snail(Number: 9, Name: "Turbo"),
-            Second: new RaceResultProvider.Snail(Number: 8, Name: "Flash"),
-            Third: new RaceResultProvider.Snail(Number: 7, Name: "Speedy")));
-
     private readonly BetApplication _betApplication;
     private readonly RaceResultProviderFake _raceResultProvider = new();
 
@@ -22,7 +15,7 @@ public class BetApplicationTest
     [Fact]
     public async Task No_winners_when_no_bet_is_placed()
     {
-        _raceResultProvider.ThatContains(NineEightSevenPodium);
+        _raceResultProvider.ThatContains(ASnailRaceResult().Build());
 
         var winners = await _betApplication.GetWinnersForLastRace();
 
@@ -32,9 +25,13 @@ public class BetApplicationTest
     [Fact]
     public async Task Winners_when_there_is_an_exact_match()
     {
-        _betApplication.PlaceBet("me", 1, 9, 8, 7);
+        _betApplication.PlaceBet(gambler: "me", timestamp: 1, first: 9, second: 8, third: 7);
 
-        _raceResultProvider.ThatContains(NineEightSevenPodium);
+        _raceResultProvider.ThatContains(
+            ASnailRaceResult()
+                .AtTimestamp(1)
+                .OnPodium(first: 9, second: 8, third: 7)
+                .Build());
 
         var winners = await _betApplication.GetWinnersForLastRace();
 
@@ -44,9 +41,13 @@ public class BetApplicationTest
     [Fact]
     public async Task No_winners_when_there_is_no_exact_match()
     {
-        _betApplication.PlaceBet("me", 1, 9, 8, 2);
+        _betApplication.PlaceBet(gambler: "me", timestamp: 1, first: 9, second: 8, third: 2);
 
-        _raceResultProvider.ThatContains(NineEightSevenPodium);
+        _raceResultProvider.ThatContains(
+            ASnailRaceResult()
+                .AtTimestamp(1)
+                .OnPodium(first: 9, second: 8, third: 7)
+                .Build());
 
         var winners = await _betApplication.GetWinnersForLastRace();
 
@@ -59,13 +60,10 @@ public class BetApplicationTest
         _betApplication.PlaceBet(gambler: "me", timestamp: 1, first: 9, second: 8, third: 7);
 
         _raceResultProvider.ThatContains(
-            new RaceResultProvider.SnailRace(
-                RaceId: 33,
-                Timestamp: 3,
-                new RaceResultProvider.Podium(
-                    First: new RaceResultProvider.Snail(Number: 9, Name: "Turbo"),
-                    Second: new RaceResultProvider.Snail(Number: 8, Name: "Flash"),
-                    Third: new RaceResultProvider.Snail(Number: 7, Name: "Speedy"))));
+            ASnailRaceResult()
+                .AtTimestamp(3)
+                .OnPodium(first: 9, second: 8, third: 7)
+                .Build());
 
         var winners = await _betApplication.GetWinnersForLastRace();
 
@@ -78,16 +76,17 @@ public class BetApplicationTest
     {
         _betApplication.PlaceBet(gambler: "me", timestamp: 11, first: 9, second: 8, third: 7);
 
-        _raceResultProvider.ThatContains(NineEightSevenPodium);
+        _raceResultProvider.ThatContains(
+            ASnailRaceResult()
+                .AtTimestamp(1)
+                .OnPodium(first: 9, second: 8, third: 7)
+                .Build());
 
         _raceResultProvider.ThatContains(
-            new RaceResultProvider.SnailRace(
-                RaceId: 34,
-                Timestamp: 11,
-                new RaceResultProvider.Podium(
-                    First: new RaceResultProvider.Snail(Number: 7, Name: "Speedy"),
-                    Second: new RaceResultProvider.Snail(Number: 8, Name: "Flash"),
-                    Third: new RaceResultProvider.Snail(Number: 9, Name: "Turbo"))));
+            ASnailRaceResult()
+                .AtTimestamp(11)
+                .OnPodium(first: 7, second: 8, third: 9)
+                .Build());
 
         var winners = await _betApplication.GetWinnersForLastRace();
 
