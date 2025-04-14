@@ -31,6 +31,9 @@ public class RaceResultProviderHttpTest : RaceResultProviderContractTest, IDispo
 
     public RaceResultProviderHttpTest()
     {
+        // Uncomment the following line to record API responses and refresh the snapshots.
+        // var wireMockServer = WireMockServer.Start(_recordApiSettings);
+       
         var wireMockServer = WireMockServer.Start(_playbackApiSettings);
 
         _httpClient = new HttpClient { BaseAddress = new Uri(wireMockServer.Url!) };
