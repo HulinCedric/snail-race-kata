@@ -6,12 +6,14 @@ namespace SnailRaceKata.Test.Domain;
 
 public class BetApplicationTest
 {
-    private readonly BetApplication _betApplication = new(new BetRepositoryFake(), new RaceResultProviderFake());
+    private readonly BetApplication _betApplication;
+    private readonly RaceResultProviderFake _raceResultProvider = new();
+
+    public BetApplicationTest() => _betApplication = new BetApplication(new BetRepositoryFake(), _raceResultProvider);
 
     [Fact]
-    public void No_winners_when_no_bet_is_placed()
-        => _betApplication
-            .GetWinnersForLastRace()
+    public async Task No_winners_when_no_bet_is_placed()
+        => (await _betApplication.GetWinnersForLastRace())
             .Should()
             .BeEmpty();
 

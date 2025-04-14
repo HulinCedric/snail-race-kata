@@ -10,5 +10,5 @@ public class BetApplication
     {
     }
 
-    public List<Winner> GetWinnersForLastRace() => null;
+    public Task<List<Winner>> GetWinnersForLastRace() => Task.FromResult(new List<Winner>());
 }
