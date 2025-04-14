@@ -10,5 +10,8 @@ public interface RaceResultProvider
 
     record SnailRace(int RaceId, long Timestamp, Podium Podium);
 
-    record SnailRaces(List<SnailRace> Races);
+    record SnailRaces(List<SnailRace> Races)
+    {
+        public SnailRace? LastRace() => Races.MaxBy(race => race.Timestamp);
+    }
 }

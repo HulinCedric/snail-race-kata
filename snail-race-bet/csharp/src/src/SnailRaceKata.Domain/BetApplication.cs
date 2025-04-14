@@ -2,6 +2,8 @@ namespace SnailRaceKata.Domain;
 
 public class BetApplication
 {
+    private static readonly List<Winner> NoWinners = [];
+
     private readonly BetRepository _betRepository;
     private readonly RaceResultProvider _raceResultProvider;
 
@@ -16,22 +18,29 @@ public class BetApplication
 
     public async Task<List<Winner>> GetWinnersForLastRace()
     {
-        var bets = _betRepository.FindByDateRange(0, long.MaxValue);
+        var bets = GetAllBets();
+        var lastRace = await GetLastRace();
+        if (lastRace is null) return NoWinners;
+
+        var winningBets = FindExactMatchBets(bets, lastRace);
+
+        return ToWinners(winningBets);
+    }
+
+    private async Task<RaceResultProvider.SnailRace?> GetLastRace()
+    {
         var races = await _raceResultProvider.Races();
 
-        var lastRace = races.Races.MaxBy(race => race.Timestamp);
-
-        if (lastRace == null)
-            return [];
-
-        var betWinners = bets
-            .Where(bet => bet.Timestamp > lastRace.Timestamp - 2)
-            .Where(
-                bet => bet.Pronostic.First == lastRace.Podium.First.Number &&
-                       bet.Pronostic.Second == lastRace.Podium.Second.Number &&
-                       bet.Pronostic.Third == lastRace.Podium.Third.Number);
-
-
-        return betWinners.Select(bet => new Winner(bet.Gambler)).ToList();
+        return races.LastRace();
     }
+
+    private List<Bet> GetAllBets() => _betRepository.FindByDateRange(0, long.MaxValue);
+
+    private static IEnumerable<Bet> FindExactMatchBets(List<Bet> bets, RaceResultProvider.SnailRace race)
+        => bets
+            .Where(bet => bet.IsInTimeFor(race))
+            .Where(bet => bet.BetIsOn(race.Podium));
+
+    private static List<Winner> ToWinners(IEnumerable<Bet> winningBets)
+        => winningBets.Select(bet => new Winner(bet.Gambler)).ToList();
 }
