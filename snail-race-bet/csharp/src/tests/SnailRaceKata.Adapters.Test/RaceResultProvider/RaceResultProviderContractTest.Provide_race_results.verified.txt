@@ -1,0 +1,20 @@
+﻿[
+  {
+    RaceId: {Scrubbed},
+    Timestamp: {Scrubbed},
+    Podium: {
+      First: {
+        Number: {Scrubbed},
+        Name: {Scrubbed}
+      },
+      Second: {
+        Number: {Scrubbed},
+        Name: {Scrubbed}
+      },
+      Third: {
+        Number: {Scrubbed},
+        Name: {Scrubbed}
+      }
+    }
+  }
+]
