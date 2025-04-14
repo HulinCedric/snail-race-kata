@@ -9,5 +9,5 @@ public class RaceResultProviderFake : RaceResultProvider
     public Task<RaceResultProvider.SnailRaces> Races()
         => Task.FromResult(new RaceResultProvider.SnailRaces(_snailRaces));
 
-    public void AlreadyContains(RaceResultProvider.SnailRace snailRace) => _snailRaces.Add(snailRace);
+    public void ThatContains(RaceResultProvider.SnailRace snailRace) => _snailRaces.Add(snailRace);
 }

@@ -10,7 +10,7 @@ public class RaceResultProviderFakeTest : RaceResultProviderContractTest
     {
         _provider = new RaceResultProviderFake();
 
-        _provider.AlreadyContains(
+        _provider.ThatContains(
             new Domain.RaceResultProvider.SnailRace(
                 RaceId: 530572,
                 Timestamp: 1744614752426L,
