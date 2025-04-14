@@ -13,6 +13,8 @@ public class BetRepositoryMongoDbTest(MongoDbServer mongoDbServer)
 
     public async Task InitializeAsync()
     {
+        await mongoDbServer.ResetAsync();
+
         _mongoClient = new MongoClient(mongoDbServer.GetConnectionString());
 
         if (!BsonClassMap.IsClassMapRegistered(typeof(Bet)))
@@ -24,7 +26,6 @@ public class BetRepositoryMongoDbTest(MongoDbServer mongoDbServer)
                 });
 
         var database = _mongoClient.GetDatabase("contract_testing");
-        await database.DropCollectionAsync("bet");
 
         _repository = new BetRepositoryMongoDb(database);
     }
