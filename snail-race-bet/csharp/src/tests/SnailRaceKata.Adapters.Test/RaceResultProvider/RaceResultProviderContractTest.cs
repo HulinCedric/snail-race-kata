@@ -17,13 +17,13 @@ public abstract class RaceResultProviderContractTest
         races.Races.Should()
             .ContainEquivalentOf(
                 ASnailRaceResult()
-                    .WithRaceId(530572)
-                    .AtTimestamp(1744614752426L)
+                    .WithRaceId(838056)
+                    .AtTimestamp(1744652903667L)
                     .OnPodium(
                         APodium()
-                            .OnFirstPlace(ASnail().Named("Man O'War").Numbered(2))
-                            .OnSecondPlace(ASnail().Named("Frankel").Numbered(7))
-                            .OnThirdPlace(ASnail().Named("Seabiscuit").Numbered(3)))
+                            .OnFirstPlace(ASnail().Named("Makybe Diva").Numbered(18))
+                            .OnSecondPlace(ASnail().Named("Winx").Numbered(19))
+                            .OnThirdPlace(ASnail().Named("Man O'War").Numbered(2)))
                     .Build());
     }
 }
