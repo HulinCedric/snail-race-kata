@@ -5,43 +5,62 @@ using WireMock.Settings;
 
 namespace SnailRaceKata.Test.Adapters.RaceResultProvider;
 
-public class RaceResultProviderHttpTest : RaceResultProviderContractTest, IDisposable
+public class RaceResultProviderHttpTest
+    : RaceResultProviderContractTest, IDisposable, IClassFixture<SnailRaceServer>
 {
+    // Set to true to call the Snail Race API and record the responses.
+    // Set to false to playback the recorded responses without calling the Snail Race API.
+    private const bool IsRecordingModeOn = false;
+
     private readonly HttpClient _httpClient;
+
     private readonly Domain.RaceResultProvider _provider;
 
-    private readonly WireMockServerSettings _recordApiSettings = new()
+    public RaceResultProviderHttpTest(SnailRaceServer snailRaceServer)
     {
-        ProxyAndRecordSettings = new ProxyAndRecordSettings
-        {
-            Url = "http://localhost:8000",
-            SaveMapping = true,
-            SaveMappingToFile = true,
-            SaveMappingForStatusCodePattern = "2xx",
-            ExcludedHeaders = ["Host", "Date"],
-        },
-        FileSystemHandler = new LocalFileSystemHandler("../../../RaceResultProvider/RaceResultApiSnapshots")
-    };
-    
-    private readonly WireMockServerSettings _playbackApiSettings = new()
-    {
-        ReadStaticMappings = true,
-        FileSystemHandler = new LocalFileSystemHandler("../../../RaceResultProvider/RaceResultApiSnapshots")
-    };
-
-    public RaceResultProviderHttpTest()
-    {
-        // Uncomment the following line to record API responses and refresh the snapshots.
-        // var wireMockServer = WireMockServer.Start(_recordApiSettings);
-       
-        var wireMockServer = WireMockServer.Start(_playbackApiSettings);
+        var wireMockServer = WireMockServer.Start(Settings(snailRaceServer));
 
         _httpClient = new HttpClient { BaseAddress = new Uri(wireMockServer.Url!) };
 
         _provider = new RaceResultProviderHttp(_httpClient);
     }
 
+    private static string ApiSnapshotsPath
+        => Path.Combine(
+            Directory.GetCurrentDirectory(),
+            "..",
+            "..",
+            "..",
+            "RaceResultProvider",
+            "RaceResultApiSnapshots");
+
     public void Dispose() => _httpClient.Dispose();
+
+    private static WireMockServerSettings Settings(SnailRaceServer snailRaceServer)
+        => IsRecordingModeOn
+            ? ProxyAndRecordSettings(snailRaceServer.GetUrl())
+            : PlaybackApiSettings();
+
+    private static WireMockServerSettings PlaybackApiSettings()
+        => new()
+        {
+            ReadStaticMappings = true,
+            FileSystemHandler = new LocalFileSystemHandler(ApiSnapshotsPath)
+        };
+
+    private static WireMockServerSettings ProxyAndRecordSettings(string snailRaceServerUrl)
+        => new()
+        {
+            ProxyAndRecordSettings = new ProxyAndRecordSettings
+            {
+                Url = snailRaceServerUrl,
+                SaveMapping = true,
+                SaveMappingToFile = true,
+                SaveMappingForStatusCodePattern = "2xx",
+                ExcludedHeaders = ["Host"]
+            },
+            FileSystemHandler = new LocalFileSystemHandler(ApiSnapshotsPath)
+        };
 
     protected override Domain.RaceResultProvider GetProvider() => _provider;
 }
