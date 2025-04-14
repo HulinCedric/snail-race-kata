@@ -10,6 +10,8 @@ public class SnailResultBuilder
     private string _name = Faker.Name.FirstName();
     private int _number = Faker.Random.Number(int.MaxValue);
 
+    public static SnailResultBuilder ASnail() => new();
+
     public SnailResultBuilder Numbered(int number)
     {
         _number = number;
