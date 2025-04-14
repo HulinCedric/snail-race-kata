@@ -2,16 +2,21 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using SnailRaceKata.Adapters.BetRepository;
 using SnailRaceKata.Domain;
+using Testcontainers.MongoDb;
 
 namespace SnailRaceKata.Test.Adapters.BetRepository;
 
-public class BetRepositoryMongoDbTest : BetRepositoryContractTest, IDisposable
+public class BetRepositoryMongoDbTest : BetRepositoryContractTest, IAsyncLifetime
 {
-    private readonly MongoClient _mongoClient = new("mongodb://localhost:27017");
-    private readonly BetRepositoryMongoDb _repository;
+    private readonly MongoDbContainer _mongoDbServer = new MongoDbBuilder().Build();
+    private MongoClient _mongoClient;
 
-    public BetRepositoryMongoDbTest()
+    private BetRepositoryMongoDb _repository;
+
+    public async Task InitializeAsync()
     {
+        await _mongoDbServer.StartAsync();
+
         if (!BsonClassMap.IsClassMapRegistered(typeof(Bet)))
             BsonClassMap.RegisterClassMap<Bet>(
                 map =>
@@ -20,13 +25,20 @@ public class BetRepositoryMongoDbTest : BetRepositoryContractTest, IDisposable
                     map.SetIgnoreExtraElements(true); // Ignore missing _id field
                 });
 
+        _mongoClient = new MongoClient(_mongoDbServer.GetConnectionString());
+
         var database = _mongoClient.GetDatabase("contract_testing");
-        database.DropCollection("bet");
+        await database.DropCollectionAsync("bet");
 
         _repository = new BetRepositoryMongoDb(database);
     }
 
-    public void Dispose() => _mongoClient.Dispose();
+    public async Task DisposeAsync()
+    {
+        _mongoClient.Dispose();
+
+        await _mongoDbServer.DisposeAsync();
+    }
 
     protected override Domain.BetRepository GetRepository() => _repository;
 }

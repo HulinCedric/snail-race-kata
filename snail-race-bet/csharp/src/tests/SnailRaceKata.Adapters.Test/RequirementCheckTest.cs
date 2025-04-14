@@ -2,27 +2,11 @@ using System.Net;
 using System.Net.Http.Json;
 using FluentAssertions;
 using MongoDB.Driver;
-using Xunit.Abstractions;
 
 namespace SnailRaceKata.Test.Adapters;
 
-public class RequirementCheckTest(ITestOutputHelper testOutputHelper)
+public class RequirementCheckTest
 {
-    [Fact]
-    public void Mongo_database_is_reachable()
-    {
-        using var mongoClient = new MongoClient("mongodb://localhost:27017");
-
-        var databaseNames = mongoClient.ListDatabaseNames().ToList();
-
-        foreach (var databaseName in databaseNames)
-        {
-            testOutputHelper.WriteLine(databaseName);
-        }
-
-        databaseNames.Should().NotBeEmpty();
-    }
-
     [Fact]
     public async Task Race_result_server_is_accessible()
     {
