@@ -1,19 +1,15 @@
-using FluentAssertions;
 using SnailRaceKata.Adapters.RaceResultProvider;
 
 namespace SnailRaceKata.Adapters.Test;
 
-public class RaceResultProviderHttpTest
+public class RaceResultProviderHttpTest : RaceResultProviderContractTest, IDisposable
 {
-    [Fact]
-    public async Task Provide_race_results()
-    {
-        var httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:8000") };
+    private readonly HttpClient _httpClient = new() { BaseAddress = new Uri("http://localhost:8000") };
+    private readonly RaceResultProviderHttp _provider;
 
-        var provider = new RaceResultProviderHttp(httpClient);
+    public RaceResultProviderHttpTest() => _provider = new RaceResultProviderHttp(_httpClient);
 
-        var races = await provider.Races();
+    public void Dispose() => _httpClient.Dispose();
 
-        races.Races.Should().NotBeEmpty();
-    }
+    protected override Domain.RaceResultProvider GetProvider() => _provider;
 }
