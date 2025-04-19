@@ -1,6 +1,6 @@
 namespace SnailRaceKata.Adapters.RaceResultProvider;
 
-internal class RaceResultProviderHttpRecords
+internal static class RaceResultProviderHttpRecords
 {
     internal record SnailRaces(List<SnailRace> Races);
 
