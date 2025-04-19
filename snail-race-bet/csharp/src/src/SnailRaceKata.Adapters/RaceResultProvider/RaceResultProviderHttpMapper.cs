@@ -14,7 +14,7 @@ internal static class RaceResultProviderHttpMapper
 
     private static Podium ToPodium(this List<Api.Snail> apiSnails)
     {
-        var orderedSnails = apiSnails.OrderByDescending(s => s.Duration).ToList();
+        var orderedSnails = apiSnails.OrderBy(s => s.Duration).ToList();
         return new Podium(
             orderedSnails[0].ToSnail(),
             orderedSnails[1].ToSnail(),
