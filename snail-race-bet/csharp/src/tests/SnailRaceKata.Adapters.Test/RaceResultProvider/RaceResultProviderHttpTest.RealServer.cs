@@ -5,8 +5,23 @@ using WireMock.Settings;
 
 namespace SnailRaceKata.Test.Adapters.RaceResultProvider;
 
-public class RaceResultProviderHttpTest
-    : RaceResultProviderContractTest, IDisposable, IClassFixture<SnailRaceServer>
+/// <summary>
+///     Contract test with real server.
+///     Use a record and playback approach:
+///     - record the API responses in the discovery phase
+///     - play recorded API responses back in the test phase
+///     This allows to test the integration with the real server without calling it every time.
+///     Useful when the server is slow, unreliable, rate limited or has a cost.
+///     The recorded API responses can be refreshed with a recurring strategy.
+/// </summary>
+/// <remarks>
+///     For developer experience,
+///     the test use a <see cref="SnailRaceContainerServer" />
+///     to remove requirement of launching test instance manually.
+///     In real life, we do not have a container for a real API dependency.
+/// </remarks>
+public class RaceResultProviderHttpTestWithRealServer
+    : RaceResultProviderContractTest, IDisposable, IClassFixture<SnailRaceContainerServer>
 {
     // Set to true to call the Snail Race API and record the responses.
     // Set to false to playback the recorded responses without calling the Snail Race API.
@@ -16,7 +31,7 @@ public class RaceResultProviderHttpTest
 
     private readonly Domain.RaceResultProvider _provider;
 
-    public RaceResultProviderHttpTest(SnailRaceServer snailRaceServer)
+    public RaceResultProviderHttpTestWithRealServer(SnailRaceContainerServer snailRaceServer)
     {
         var wireMockServer = WireMockServer.Start(Settings(snailRaceServer));
 
@@ -36,7 +51,7 @@ public class RaceResultProviderHttpTest
 
     public void Dispose() => _httpClient.Dispose();
 
-    private static WireMockServerSettings Settings(SnailRaceServer snailRaceServer)
+    private static WireMockServerSettings Settings(SnailRaceContainerServer snailRaceServer)
         => IsRecordingModeOn
             ? ProxyAndRecordSettings(snailRaceServer.GetUrl())
             : PlaybackApiSettings();

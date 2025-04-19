@@ -3,7 +3,7 @@ using DotNet.Testcontainers.Containers;
 
 namespace SnailRaceKata.Test.Adapters.RaceResultProvider;
 
-public class SnailRaceServer : IAsyncLifetime
+public class SnailRaceContainerServer : IAsyncLifetime
 {
     private const ushort SnailRaceServerPort = 8000;
 

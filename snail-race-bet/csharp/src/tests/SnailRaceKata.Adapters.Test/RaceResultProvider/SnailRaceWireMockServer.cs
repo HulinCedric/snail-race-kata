@@ -5,7 +5,7 @@ using WireMock.Server;
 
 namespace SnailRaceKata.Test.Adapters.RaceResultProvider;
 
-public class ManagedSnailRaceServer : IDisposable
+public class SnailRaceWireMockServer : IDisposable
 {
     private readonly WireMockServer _wireMockServer = WireMockServer.Start();
 
