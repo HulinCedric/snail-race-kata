@@ -63,12 +63,12 @@ public class RaceResultProviderHttpTestWithRealServer
             FileSystemHandler = new LocalFileSystemHandler(ApiSnapshotsPath)
         };
 
-    private static WireMockServerSettings ProxyAndRecordSettings(string snailRaceServerUrl)
+    private static WireMockServerSettings ProxyAndRecordSettings(Uri snailRaceServerUrl)
         => new()
         {
             ProxyAndRecordSettings = new ProxyAndRecordSettings
             {
-                Url = snailRaceServerUrl,
+                Url = snailRaceServerUrl.ToString(),
                 SaveMapping = true,
                 SaveMappingToFile = true,
                 SaveMappingForStatusCodePattern = "2xx",

@@ -16,5 +16,5 @@ public class SnailRaceContainerServer : IAsyncLifetime
 
     public async Task DisposeAsync() => await _container.DisposeAsync();
 
-    public string GetUrl() => $"http://localhost:{_container.GetMappedPublicPort(SnailRaceServerPort)}";
+    public Uri GetUrl() => new($"http://localhost:{_container.GetMappedPublicPort(SnailRaceServerPort)}");
 }
