@@ -3,13 +3,18 @@ using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
 
-namespace SnailRaceKata.Test.Adapters.RaceResultProvider.ExternalSystemContractTests;
+namespace SnailRaceKata.Test.Adapters.RaceResultProvider.ExternalSystemContractTests.Drivers;
 
-public class SnailRaceApiStubDriver
+public class SnailRaceApiStubDriver : BaseSnailRaceApiDriver
 {
     private readonly WireMockServer _apiStub;
 
-    public SnailRaceApiStubDriver(WireMockServer apiStub) => _apiStub = apiStub;
+    public SnailRaceApiStubDriver(WireMockServer apiStub) : this(apiStub.CreateClient(), apiStub)
+    {
+    }
+
+    public SnailRaceApiStubDriver(HttpClient httpClient, WireMockServer apiStub) : base(httpClient)
+        => _apiStub = apiStub;
 
     public void WillReturnARaceWithSnails(params List<(int number, string name, decimal duration)> snails)
         => _apiStub.Given(
